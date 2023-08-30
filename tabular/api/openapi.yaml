@@ -1,0 +1,1513 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- description: Tabular API
+  url: https://api.tabular.io
+paths:
+  /v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/{database}/grants:
+    delete:
+      operationId: revokePrivilegesOnDatabase
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: warehouseId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: database
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ChangeRoleGrantRequest'
+              type: array
+        required: true
+      responses:
+        "200":
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Revoke privileges on database
+    get:
+      operationId: getDatabaseRoleGrants
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: warehouseId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: database
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListDatabaseRoleGrantsResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: List all grants for database
+    put:
+      operationId: grantPrivilegesOnDatabase
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: warehouseId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: database
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ChangeRoleGrantRequest'
+              type: array
+        required: true
+      responses:
+        "200":
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Grant privileges on database
+  /v1/organizations/{organizationId}/roles/{roleName}:
+    delete:
+      operationId: deleteRole
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: roleName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: force
+        required: false
+        schema:
+          default: true
+          type: boolean
+        style: form
+      responses:
+        "200":
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Delete Role
+    get:
+      operationId: getRole
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: roleName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetRoleResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Get role
+    put:
+      operationId: updateRoleName
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: roleName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRoleRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateRoleNameResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Update role
+  /v1/organizations/{organizationId}/roles/{roleName}/members:
+    delete:
+      operationId: removeRoleMembers
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: roleName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/UpdateRoleMemberRequest'
+              type: array
+        required: true
+      responses:
+        "200":
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Remove members from a role
+    put:
+      operationId: addRoleMembers
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: roleName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/UpdateRoleMemberRequest'
+              type: array
+        required: true
+      responses:
+        "200":
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Add members to a role
+  /v1/organizations/{organizationId}/roles/{roleName}/children:
+    delete:
+      operationId: removeChildFromRole
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: roleName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRoleRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Remove child from role
+    put:
+      operationId: addChildToRole
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: roleName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRoleRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Add child to role
+  /v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/:
+    post:
+      operationId: createDatabase
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: warehouseId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDatabaseRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateDatabaseResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Creates database with extended information
+  /v1/organizations/{organizationId}/warehouses/:
+    get:
+      operationId: listWarehouses
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListWarehouseResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: List all warehouses
+    post:
+      operationId: createWarehouse
+      parameters:
+      - explode: true
+        in: query
+        name: creatorRoleId
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWarehouseRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateWarehouseResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Create a warehouse
+  /v1/organizations/{organizationId}/storage-profiles/:
+    post:
+      operationId: createStorageProfile
+      parameters:
+      - explode: true
+        in: query
+        name: creatorRoleId
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateS3StorageProfileRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateS3StorageProfileResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Create a storage profile
+  /v1/organizations/{organizationId}/roles/:
+    post:
+      operationId: createRole
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRoleRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateRoleResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Create role
+  /v1/organizations/{organizationId}/iam/credentials/service-account:
+    post:
+      operationId: createServiceAccountCredential
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateServiceAccountCredentialRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateCredentialResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Create a service credential
+  /v1/organizations/{organizationId}/iam/credentials/oidc:
+    post:
+      operationId: createOIDCIntegration
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOidcCredentialRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateCredentialResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Create an OIDC Integration
+  /v1/organizations/{organizationId}/iam/credentials/member:
+    post:
+      operationId: createMemberCredential
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMemberCredentialRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateCredentialResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Create a member credential
+  /v1/organizations/{organizationId}/iam/credentials/custom-idp:
+    post:
+      operationId: createCustomerIdentityProviderCredential
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomIdpCredentialRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateCredentialResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Create a custom identity provider credential
+  /v1/organizations/{organizationId}/iam/credentials/aws:
+    post:
+      operationId: createIamRoleMapping
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIamRoleMappingRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateCredentialResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Create an IAM Role Mapping
+  /v1/organizations/{organizationId}/warehouses/{warehouseId}:
+    delete:
+      operationId: deleteWarehouse
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: warehouseId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Delete warehouse by id
+    get:
+      operationId: getWarehouse
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: warehouseId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetWarehouseResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Get a warehouse by id
+  /v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/{database}:
+    delete:
+      operationId: deleteDatabase
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: warehouseId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: database
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Drops a database
+    get:
+      operationId: getDatabase
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: warehouseId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: database
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetDatabaseResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Gets extended information on a database
+  /v1/organizations/{organizationId}/storage-profiles/{storageProfileId}:
+    delete:
+      operationId: deleteStorageProfile
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: storageProfileId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Delete a storage profile by ID
+    get:
+      operationId: getStorageProfile
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: storageProfileId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetStorageProfileResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Get a storage profile by ID
+  /v1/organizations/{organizationId}/members/:
+    get:
+      operationId: getOrganizationMembers
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListMembersResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Get organization members
+  /v1/organizations/{organizationId}/iam/credentials/{credentialKey}:
+    delete:
+      operationId: deleteMemberCredential
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: credentialKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Delete a credential
+    get:
+      operationId: getCredential
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: credentialKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetCredentialResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Fetch information about a credential
+components:
+  schemas:
+    ChangeRoleGrantRequest:
+      example:
+        withGrant: true
+        roleName: roleName
+        privilege: ALL
+      properties:
+        roleName:
+          type: string
+        privilege:
+          enum:
+          - ALL
+          - USAGE
+          - MODIFY_ORGANIZATION
+          - MANAGE_USERS
+          - MANAGE_BILLING
+          - MANAGE_GRANTS
+          - CREATE_ROLE
+          - CREATE_WAREHOUSE
+          - LIST_WAREHOUSES
+          - MODIFY_ROLE
+          - MODIFY_WAREHOUSE
+          - LIST_DATABASES
+          - CREATE_DATABASE
+          - FUTURE_MODIFY_DATABASE
+          - FUTURE_LIST_TABLES
+          - FUTURE_CREATE_TABLE
+          - FUTURE_SELECT
+          - FUTURE_UPDATE
+          - FUTURE_DROP_TABLE
+          - MODIFY_DATABASE
+          - LIST_TABLES
+          - CREATE_TABLE
+          - DROP
+          - SELECT
+          - UPDATE
+          type: string
+        withGrant:
+          type: boolean
+      type: object
+    UpdateRoleRequest:
+      example:
+        roleName: roleName
+      properties:
+        roleName:
+          type: string
+      type: object
+    UpdateRoleNameResponse:
+      example:
+        name: name
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+      type: object
+    UpdateRoleMemberRequest:
+      example:
+        withAdmin: true
+        memberId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        memberId:
+          format: uuid
+          type: string
+        withAdmin:
+          type: boolean
+      type: object
+    CreateDatabaseRequest:
+      example:
+        name: name
+        properties:
+          key: properties
+      properties:
+        name:
+          type: string
+        properties:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    CreateDatabaseResponse:
+      example:
+        name: name
+        properties:
+          key: properties
+      properties:
+        name:
+          type: string
+        properties:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    CreateWarehouseRequest:
+      example:
+        storageProfileId: storageProfileId
+        name: name
+      properties:
+        name:
+          type: string
+        storageProfileId:
+          type: string
+      type: object
+    CreateWarehouseResponse:
+      example:
+        organizationId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        storageProfile: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        region: region
+        properties:
+          key: properties
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+        region:
+          type: string
+        organizationId:
+          format: uuid
+          type: string
+        storageProfile:
+          format: uuid
+          type: string
+        properties:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    CreateS3StorageProfileRequest:
+      example:
+        bucket: bucket
+        roleArn: roleArn
+        region: region
+      properties:
+        region:
+          type: string
+        bucket:
+          type: string
+        roleArn:
+          type: string
+      type: object
+    CreateS3StorageProfileResponse:
+      example:
+        organizationId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        bucket: bucket
+        accountId: accountId
+        roleArn: roleArn
+        externalId: externalId
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        region: region
+        properties: "{}"
+      properties:
+        id:
+          format: uuid
+          type: string
+        organizationId:
+          format: uuid
+          type: string
+        accountId:
+          type: string
+        region:
+          type: string
+        bucket:
+          type: string
+        roleArn:
+          type: string
+        externalId:
+          type: string
+        properties:
+          type: object
+      type: object
+    CreateRoleRequest:
+      example:
+        roleName: roleName
+      properties:
+        roleName:
+          type: string
+      type: object
+    CreateRoleResponse:
+      example:
+        name: name
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+      type: object
+    CreateServiceAccountCredentialRequest:
+      example:
+        roleId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+      properties:
+        name:
+          type: string
+        roleId:
+          format: uuid
+          type: string
+      type: object
+    CreateCredentialResponse:
+      example:
+        credentialSecret: credentialSecret
+        name: name
+        credentialId: credentialId
+      properties:
+        name:
+          type: string
+        credentialId:
+          type: string
+        credentialSecret:
+          type: string
+      type: object
+    CreateOidcCredentialRequest:
+      example:
+        oidcClaimValue: oidcClaimValue
+        oidcIssuer: oidcIssuer
+        roleId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        oidcClaimKey: oidcClaimKey
+        name: name
+      properties:
+        name:
+          type: string
+        oidcIssuer:
+          type: string
+        oidcClaimKey:
+          type: string
+        oidcClaimValue:
+          type: string
+        roleId:
+          format: uuid
+          type: string
+      type: object
+    CreateMemberCredentialRequest:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+      type: object
+    CreateCustomIdpCredentialRequest:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+      type: object
+    CreateIamRoleMappingRequest:
+      example:
+        roleId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        awsRoleArn: awsRoleArn
+      properties:
+        name:
+          type: string
+        awsRoleArn:
+          type: string
+        roleId:
+          format: uuid
+          type: string
+      type: object
+    GetWarehouseResponse:
+      example:
+        organizationId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        storageProfile: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        region: region
+        properties:
+          key: properties
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+        region:
+          type: string
+        organizationId:
+          format: uuid
+          type: string
+        storageProfile:
+          format: uuid
+          type: string
+        properties:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    GetDatabaseResponse:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        warehouseId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        createdBy: createdBy
+        lastModifiedBy: lastModifiedBy
+        name: name
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        lastModified: 2000-01-23T04:56:07.000+00:00
+        properties:
+          key: properties
+      properties:
+        id:
+          format: uuid
+          type: string
+        warehouseId:
+          format: uuid
+          type: string
+        name:
+          type: string
+        createdBy:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        lastModifiedBy:
+          type: string
+        lastModified:
+          format: date-time
+          type: string
+        properties:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    ListDatabaseRoleGrantsResponse:
+      example:
+        grants:
+        - role:
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          withGrant: true
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          privilege: ALL
+        - role:
+            name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          withGrant: true
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          privilege: ALL
+      properties:
+        grants:
+          items:
+            $ref: '#/components/schemas/RoleGrantDetail'
+          type: array
+      type: object
+    RoleGrantDetail:
+      example:
+        role:
+          name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        withGrant: true
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        privilege: ALL
+      properties:
+        id:
+          format: uuid
+          type: string
+        role:
+          $ref: '#/components/schemas/RoleRef'
+        privilege:
+          enum:
+          - ALL
+          - USAGE
+          - MODIFY_ORGANIZATION
+          - MANAGE_USERS
+          - MANAGE_BILLING
+          - MANAGE_GRANTS
+          - CREATE_ROLE
+          - CREATE_WAREHOUSE
+          - LIST_WAREHOUSES
+          - MODIFY_ROLE
+          - MODIFY_WAREHOUSE
+          - LIST_DATABASES
+          - CREATE_DATABASE
+          - FUTURE_MODIFY_DATABASE
+          - FUTURE_LIST_TABLES
+          - FUTURE_CREATE_TABLE
+          - FUTURE_SELECT
+          - FUTURE_UPDATE
+          - FUTURE_DROP_TABLE
+          - MODIFY_DATABASE
+          - LIST_TABLES
+          - CREATE_TABLE
+          - DROP
+          - SELECT
+          - UPDATE
+          type: string
+        withGrant:
+          type: boolean
+      type: object
+    RoleRef:
+      example:
+        name: name
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+      type: object
+    ListWarehouseResponse:
+      example:
+        warehouses:
+        - organizationId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          storageProfile: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          region: region
+          properties:
+            key: properties
+        - organizationId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          storageProfile: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          region: region
+          properties:
+            key: properties
+      properties:
+        warehouses:
+          items:
+            $ref: '#/components/schemas/Warehouse'
+          type: array
+      type: object
+    Warehouse:
+      example:
+        organizationId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        storageProfile: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        region: region
+        properties:
+          key: properties
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+        region:
+          type: string
+        organizationId:
+          format: uuid
+          type: string
+        storageProfile:
+          format: uuid
+          type: string
+        properties:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    GetStorageProfileResponse:
+      example:
+        organizationId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        bucket: bucket
+        accountId: accountId
+        roleArn: roleArn
+        externalId: externalId
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        region: region
+        properties: "{}"
+      properties:
+        id:
+          format: uuid
+          type: string
+        organizationId:
+          format: uuid
+          type: string
+        accountId:
+          type: string
+        region:
+          type: string
+        bucket:
+          type: string
+        roleArn:
+          type: string
+        externalId:
+          type: string
+        properties:
+          type: object
+      type: object
+    GetRoleResponse:
+      example:
+        children:
+        - name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        members:
+        - withAdmin: true
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          email: email
+        - withAdmin: true
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          email: email
+        name: name
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+        members:
+          items:
+            $ref: '#/components/schemas/MemberEntry'
+          type: array
+        children:
+          items:
+            $ref: '#/components/schemas/RoleRef'
+          type: array
+      type: object
+    MemberEntry:
+      example:
+        withAdmin: true
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        email: email
+      properties:
+        id:
+          format: uuid
+          type: string
+        email:
+          type: string
+        withAdmin:
+          type: boolean
+      type: object
+    ListMembersResponse:
+      example:
+        members:
+        - id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          email: email
+        - id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          email: email
+      properties:
+        members:
+          items:
+            $ref: '#/components/schemas/MemberRef'
+          type: array
+      type: object
+    MemberRef:
+      example:
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        email: email
+      properties:
+        id:
+          format: uuid
+          type: string
+        email:
+          type: string
+      type: object
+    GetCredentialResponse:
+      example:
+        organizationId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        creator: creator
+        roleId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        description: description
+        active: true
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        cidrs:
+        - cidrs
+        - cidrs
+        type: MEMBER
+        userId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        key: key
+        memberId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+        key:
+          type: string
+        userId:
+          format: uuid
+          type: string
+        memberId:
+          format: uuid
+          type: string
+        organizationId:
+          format: uuid
+          type: string
+        roleId:
+          format: uuid
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        cidrs:
+          items:
+            type: string
+          type: array
+        type:
+          enum:
+          - MEMBER
+          - FEDERATED
+          - IAM
+          - OIDC
+          - SERVICE
+          type: string
+        creator:
+          type: string
+        active:
+          type: boolean
+      type: object
+  securitySchemes:
+    TabularJWTAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
