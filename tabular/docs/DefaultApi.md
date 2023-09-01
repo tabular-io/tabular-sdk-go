@@ -51,7 +51,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -122,7 +122,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -193,7 +193,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -263,7 +263,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -336,7 +336,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -406,7 +406,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -476,7 +476,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -546,7 +546,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -616,7 +616,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -686,7 +686,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -758,7 +758,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -830,7 +830,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -902,7 +902,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -971,7 +971,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -1042,7 +1042,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -1111,7 +1111,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -1180,7 +1180,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -1251,7 +1251,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -1325,7 +1325,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -1399,7 +1399,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -1467,7 +1467,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -1538,7 +1538,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -1609,7 +1609,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -1680,7 +1680,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -1754,7 +1754,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -1822,7 +1822,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -1893,7 +1893,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -1964,7 +1964,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
@@ -2038,7 +2038,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-go-sdk"
+    openapiclient "github.com/tabular-io/tabular-sdk-go"
 )
 
 func main() {
