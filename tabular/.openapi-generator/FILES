@@ -72,5 +72,4 @@ model_update_role_name_response.go
 model_update_role_request.go
 model_warehouse.go
 response.go
-test/api_default_test.go
 utils.go

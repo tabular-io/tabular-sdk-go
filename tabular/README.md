@@ -21,7 +21,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import tabular "github.com/tabular-io/tabular-sdk-go"
+import tabular "github.com/tabular-io/tabular-go-sdk"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:

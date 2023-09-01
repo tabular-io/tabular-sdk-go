@@ -1,4 +1,4 @@
-module github.com/tabular-io/tabular-sdk-go
+module github.com/tabular-io/tabular-go-sdk
 
 go 1.18
 

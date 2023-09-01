@@ -13,8 +13,8 @@ import (
 	"context"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	openapiclient "github.com/tabular-io/tabular-sdk-go"
 	"testing"
+	openapiclient "github.com/tabular-io/tabular-go-sdk"
 )
 
 func Test_tabular_DefaultApiService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService AddChildToRole", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var roleName string
@@ -38,7 +38,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService AddRoleMembers", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var roleName string
@@ -52,7 +52,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateCustomerIdentityProviderCredential", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 
@@ -66,7 +66,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateDatabase", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var warehouseId string
@@ -81,7 +81,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateIamRoleMapping", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 
@@ -95,7 +95,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateMemberCredential", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 
@@ -109,7 +109,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateOIDCIntegration", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 
@@ -123,7 +123,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateRole", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 
@@ -137,7 +137,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateServiceAccountCredential", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 
@@ -151,7 +151,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateStorageProfile", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 
@@ -165,7 +165,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateWarehouse", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 
@@ -179,7 +179,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteDatabase", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var warehouseId string
@@ -194,7 +194,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteMemberCredential", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var credentialKey string
@@ -208,7 +208,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteRole", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var roleName string
@@ -222,7 +222,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteStorageProfile", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var storageProfileId string
@@ -236,7 +236,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteWarehouse", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var warehouseId string
@@ -250,7 +250,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetCredential", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var credentialKey string
@@ -265,7 +265,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetDatabase", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var warehouseId string
@@ -281,7 +281,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetDatabaseRoleGrants", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var warehouseId string
@@ -297,7 +297,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetOrganizationMembers", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 
@@ -311,7 +311,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetRole", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var roleName string
@@ -326,7 +326,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetStorageProfile", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var storageProfileId string
@@ -341,7 +341,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetWarehouse", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var warehouseId string
@@ -356,7 +356,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GrantPrivilegesOnDatabase", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var warehouseId string
@@ -371,7 +371,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListWarehouses", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 
@@ -385,7 +385,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService RemoveChildFromRole", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var roleName string
@@ -399,7 +399,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService RemoveRoleMembers", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var roleName string
@@ -413,7 +413,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService RevokePrivilegesOnDatabase", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var warehouseId string
@@ -428,7 +428,7 @@ func Test_tabular_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateRoleName", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var organizationId string
 		var roleName string
