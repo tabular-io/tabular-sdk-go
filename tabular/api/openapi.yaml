@@ -4,7 +4,7 @@ info:
   version: v0
 servers:
 - description: Generated server url
-  url: http://localhost:9110
+  url: https://api.tabular.io
 paths:
   /v1/organizations/{organizationId}/warehouses/{warehouseId}/grants:
     delete:

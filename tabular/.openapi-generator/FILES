@@ -78,4 +78,5 @@ model_update_role_request.go
 model_warehouse.go
 model_warehouse_authorization.go
 response.go
+test/api_default_test.go
 utils.go

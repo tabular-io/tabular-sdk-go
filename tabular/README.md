@@ -73,7 +73,7 @@ ctx = context.WithValue(context.Background(), tabular.ContextOperationServerVari
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost:9110*
+All URIs are relative to *https://api.tabular.io*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

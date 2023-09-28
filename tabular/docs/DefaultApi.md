@@ -1,6 +1,6 @@
 # \DefaultApi
 
-All URIs are relative to *http://localhost:9110*
+All URIs are relative to *https://api.tabular.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

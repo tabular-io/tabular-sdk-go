@@ -1,1 +1,2184 @@
-{"openapi":"3.0.1","info":{"title":"OpenAPI definition","version":"v0"},"servers":[{"url":"http://localhost:9110","description":"Generated server url"}],"paths":{"/v1/organizations/{organizationId}/warehouses/{warehouseId}/grants":{"put":{"summary":"Grant privileges on a warehouse","operationId":"grantPrivilegesOnWarehouse","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"warehouseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/RoleWarehouseGrantRequest"}}}},"required":true},"responses":{"200":{"description":"OK"}},"security":[{"TabularJWTAuth":[]}]},"delete":{"summary":"Revoke privileges on a warehouse","operationId":"revokePrivilegesOnWarehouse","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"warehouseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/RoleWarehouseGrantRequest"}}}},"required":true},"responses":{"200":{"description":"OK"}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/{database}/grants":{"get":{"summary":"List all grants for database","operationId":"getDatabaseRoleGrants","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"warehouseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"database","in":"path","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/ListDatabaseRoleGrantsResponse"}}}}},"security":[{"TabularJWTAuth":[]}]},"put":{"summary":"Grant privileges on database","operationId":"grantPrivilegesOnDatabase","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"warehouseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"database","in":"path","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/ChangeRoleGrantRequest"}}}},"required":true},"responses":{"200":{"description":"OK"}},"security":[{"TabularJWTAuth":[]}]},"delete":{"summary":"Revoke privileges on database","operationId":"revokePrivilegesOnDatabase","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"warehouseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"database","in":"path","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/ChangeRoleGrantRequest"}}}},"required":true},"responses":{"200":{"description":"OK"}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/roles/{roleName}":{"get":{"summary":"Get role","operationId":"getRole","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"roleName","in":"path","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/GetRoleResponse"}}}}},"security":[{"TabularJWTAuth":[]}]},"put":{"summary":"Update role","operationId":"updateRoleName","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"roleName","in":"path","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UpdateRoleRequest"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/UpdateRoleNameResponse"}}}}},"security":[{"TabularJWTAuth":[]}]},"delete":{"summary":"Delete Role","operationId":"deleteRole","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"roleName","in":"path","required":true,"schema":{"type":"string"}},{"name":"force","in":"query","required":false,"schema":{"type":"boolean","default":true}}],"responses":{"200":{"description":"OK"}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/roles/{roleName}/members":{"put":{"summary":"Add members to a role","operationId":"addRoleMembers","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"roleName","in":"path","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/UpdateRoleMemberRequest"}}}},"required":true},"responses":{"200":{"description":"OK"}},"security":[{"TabularJWTAuth":[]}]},"delete":{"summary":"Remove members from a role","operationId":"removeRoleMembers","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"roleName","in":"path","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/UpdateRoleMemberRequest"}}}},"required":true},"responses":{"200":{"description":"OK"}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/roles/{roleName}/children":{"put":{"summary":"Add child to role","operationId":"addChildToRole","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"roleName","in":"path","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UpdateRoleRequest"}}},"required":true},"responses":{"200":{"description":"OK"}},"security":[{"TabularJWTAuth":[]}]},"delete":{"summary":"Remove child from role","operationId":"removeChildFromRole","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"roleName","in":"path","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UpdateRoleRequest"}}},"required":true},"responses":{"200":{"description":"OK"}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/":{"post":{"summary":"Creates database with extended information","operationId":"createDatabase","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"warehouseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CreateDatabaseRequest"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/CreateDatabaseResponse"}}}}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/warehouses/":{"get":{"summary":"List all warehouses","operationId":"listWarehouses","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/ListWarehouseResponse"}}}}},"security":[{"TabularJWTAuth":[]}]},"post":{"summary":"Create a warehouse","operationId":"createWarehouse","parameters":[{"name":"creatorRoleId","in":"query","required":false,"schema":{"type":"string","format":"uuid"}},{"name":"organizationId","in":"path","required":true,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CreateWarehouseRequest"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/CreateWarehouseResponse"}}}}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/storage-profiles/":{"post":{"summary":"Create a storage profile","operationId":"createStorageProfile","parameters":[{"name":"creatorRoleId","in":"query","required":false,"schema":{"type":"string","format":"uuid"}},{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CreateS3StorageProfileRequest"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/CreateS3StorageProfileResponse"}}}}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/roles/":{"post":{"summary":"Create role","operationId":"createRole","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CreateRoleRequest"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/CreateRoleResponse"}}}}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/iam/credentials/service-account":{"post":{"summary":"Create a service credential","operationId":"createServiceAccountCredential","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CreateServiceAccountCredentialRequest"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/CreateCredentialResponse"}}}}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/iam/credentials/oidc":{"post":{"summary":"Create an OIDC Integration","operationId":"createOIDCIntegration","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CreateOidcCredentialRequest"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/CreateCredentialResponse"}}}}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/iam/credentials/member":{"post":{"summary":"Create a member credential","operationId":"createMemberCredential","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CreateMemberCredentialRequest"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/CreateCredentialResponse"}}}}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/iam/credentials/custom-idp":{"post":{"summary":"Create a custom identity provider credential","operationId":"createCustomerIdentityProviderCredential","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CreateCustomIdpCredentialRequest"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/CreateCredentialResponse"}}}}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/iam/credentials/aws":{"post":{"summary":"Create an IAM Role Mapping","operationId":"createIamRoleMapping","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CreateIamRoleMappingRequest"}}},"required":true},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/CreateCredentialResponse"}}}}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/warehouses/{warehouseId}":{"get":{"summary":"Get a warehouse by id","operationId":"getWarehouse","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"warehouseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/GetWarehouseResponse"}}}}},"security":[{"TabularJWTAuth":[]}]},"delete":{"summary":"Delete warehouse by id","operationId":"deleteWarehouse","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"warehouseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"OK"}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/warehouses/{warehouseId}/grants/roles/{roleId}":{"get":{"summary":"Get warehouse grants by role name","operationId":"getRoleWarehouseGrants","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"warehouseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"roleId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/GetRoleWarehouseGrantsResponse"}}}}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/{database}":{"get":{"summary":"Gets extended information on a database","operationId":"getDatabase","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"warehouseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"database","in":"path","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/GetDatabaseResponse"}}}}},"security":[{"TabularJWTAuth":[]}]},"delete":{"summary":"Drops a database","operationId":"deleteDatabase","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"warehouseId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"database","in":"path","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"OK"}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/storage-profiles/{storageProfileId}":{"get":{"summary":"Get a storage profile by ID","operationId":"getStorageProfile","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"storageProfileId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/GetStorageProfileResponse"}}}}},"security":[{"TabularJWTAuth":[]}]},"delete":{"summary":"Delete a storage profile by ID","operationId":"deleteStorageProfile","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"storageProfileId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"OK"}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/members/":{"get":{"summary":"Get organization members","operationId":"getOrganizationMembers","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/ListMembersResponse"}}}}},"security":[{"TabularJWTAuth":[]}]}},"/v1/organizations/{organizationId}/iam/credentials/{credentialKey}":{"get":{"summary":"Fetch information about a credential","operationId":"getCredential","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"credentialKey","in":"path","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/GetCredentialResponse"}}}}},"security":[{"TabularJWTAuth":[]}]},"delete":{"summary":"Delete a credential","operationId":"deleteMemberCredential","parameters":[{"name":"organizationId","in":"path","required":true,"schema":{"type":"string","format":"uuid"}},{"name":"credentialKey","in":"path","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"OK"}},"security":[{"TabularJWTAuth":[]}]}}},"components":{"schemas":{"RoleWarehouseGrantRequest":{"type":"object","properties":{"roleId":{"type":"string","format":"uuid"},"privilege":{"type":"string","enum":["ALL","USAGE","MODIFY_ORGANIZATION","MANAGE_USERS","MANAGE_BILLING","MANAGE_GRANTS","CREATE_ROLE","CREATE_WAREHOUSE","LIST_WAREHOUSES","MODIFY_ROLE","MODIFY_WAREHOUSE","LIST_DATABASES","CREATE_DATABASE","FUTURE_MODIFY_DATABASE","FUTURE_LIST_TABLES","FUTURE_CREATE_TABLE","FUTURE_SELECT","FUTURE_UPDATE","FUTURE_DROP_TABLE","MODIFY_DATABASE","LIST_TABLES","CREATE_TABLE","DROP","SELECT","UPDATE","CREATE_LABEL","MODIFY_LABEL","APPLY_LABEL"]},"withGrant":{"type":"boolean"}}},"ChangeRoleGrantRequest":{"type":"object","properties":{"roleName":{"type":"string"},"privilege":{"type":"string","enum":["ALL","USAGE","MODIFY_ORGANIZATION","MANAGE_USERS","MANAGE_BILLING","MANAGE_GRANTS","CREATE_ROLE","CREATE_WAREHOUSE","LIST_WAREHOUSES","MODIFY_ROLE","MODIFY_WAREHOUSE","LIST_DATABASES","CREATE_DATABASE","FUTURE_MODIFY_DATABASE","FUTURE_LIST_TABLES","FUTURE_CREATE_TABLE","FUTURE_SELECT","FUTURE_UPDATE","FUTURE_DROP_TABLE","MODIFY_DATABASE","LIST_TABLES","CREATE_TABLE","DROP","SELECT","UPDATE","CREATE_LABEL","MODIFY_LABEL","APPLY_LABEL"]},"withGrant":{"type":"boolean"}}},"UpdateRoleRequest":{"type":"object","properties":{"roleName":{"type":"string"}}},"UpdateRoleNameResponse":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"name":{"type":"string"}}},"UpdateRoleMemberRequest":{"type":"object","properties":{"memberId":{"type":"string","format":"uuid"},"withAdmin":{"type":"boolean"}}},"CreateDatabaseRequest":{"type":"object","properties":{"name":{"type":"string"},"properties":{"type":"object","additionalProperties":{"type":"string"}}}},"CreateDatabaseResponse":{"type":"object","properties":{"name":{"type":"string"},"properties":{"type":"object","additionalProperties":{"type":"string"}}}},"CreateWarehouseRequest":{"type":"object","properties":{"name":{"type":"string"},"storageProfileId":{"type":"string"}}},"CreateWarehouseResponse":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"name":{"type":"string"},"region":{"type":"string"},"organizationId":{"type":"string","format":"uuid"},"storageProfile":{"type":"string","format":"uuid"},"properties":{"type":"object","additionalProperties":{"type":"string"}}}},"CreateS3StorageProfileRequest":{"type":"object","properties":{"region":{"type":"string"},"bucket":{"type":"string"},"roleArn":{"type":"string"}}},"CreateS3StorageProfileResponse":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"organizationId":{"type":"string","format":"uuid"},"accountId":{"type":"string"},"region":{"type":"string"},"bucket":{"type":"string"},"roleArn":{"type":"string"},"externalId":{"type":"string"},"properties":{"type":"object"}}},"CreateRoleRequest":{"type":"object","properties":{"roleName":{"type":"string"}}},"CreateRoleResponse":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"name":{"type":"string"}}},"CreateServiceAccountCredentialRequest":{"type":"object","properties":{"name":{"type":"string"},"roleId":{"type":"string","format":"uuid"}}},"CreateCredentialResponse":{"type":"object","properties":{"name":{"type":"string"},"credentialId":{"type":"string"},"credentialSecret":{"type":"string"}}},"CreateOidcCredentialRequest":{"type":"object","properties":{"name":{"type":"string"},"oidcIssuer":{"type":"string"},"oidcClaimKey":{"type":"string"},"oidcClaimValue":{"type":"string"},"roleId":{"type":"string","format":"uuid"}}},"CreateMemberCredentialRequest":{"type":"object","properties":{"name":{"type":"string"}}},"CreateCustomIdpCredentialRequest":{"type":"object","properties":{"name":{"type":"string"}}},"CreateIamRoleMappingRequest":{"type":"object","properties":{"name":{"type":"string"},"awsRoleArn":{"type":"string"},"roleId":{"type":"string","format":"uuid"}}},"GetWarehouseResponse":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"name":{"type":"string"},"region":{"type":"string"},"organizationId":{"type":"string","format":"uuid"},"storageProfile":{"type":"string","format":"uuid"},"properties":{"type":"object","additionalProperties":{"type":"string"}}}},"GetRoleWarehouseGrantsResponse":{"type":"object","properties":{"authorizations":{"type":"array","items":{"$ref":"#/components/schemas/WarehouseAuthorization"}}}},"WarehouseAuthorization":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"subjectId":{"type":"string","format":"uuid"},"privilege":{"type":"string","enum":["ALL","USAGE","MODIFY_ORGANIZATION","MANAGE_USERS","MANAGE_BILLING","MANAGE_GRANTS","CREATE_ROLE","CREATE_WAREHOUSE","LIST_WAREHOUSES","MODIFY_ROLE","MODIFY_WAREHOUSE","LIST_DATABASES","CREATE_DATABASE","FUTURE_MODIFY_DATABASE","FUTURE_LIST_TABLES","FUTURE_CREATE_TABLE","FUTURE_SELECT","FUTURE_UPDATE","FUTURE_DROP_TABLE","MODIFY_DATABASE","LIST_TABLES","CREATE_TABLE","DROP","SELECT","UPDATE","CREATE_LABEL","MODIFY_LABEL","APPLY_LABEL"]},"withGrant":{"type":"boolean"},"resource":{"type":"string"},"resourceType":{"type":"string"}}},"GetDatabaseResponse":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"warehouseId":{"type":"string","format":"uuid"},"name":{"type":"string"},"createdBy":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"lastModifiedBy":{"type":"string"},"lastModified":{"type":"string","format":"date-time"},"properties":{"type":"object","additionalProperties":{"type":"string"}}}},"ListDatabaseRoleGrantsResponse":{"type":"object","properties":{"grants":{"type":"array","items":{"$ref":"#/components/schemas/RoleGrantDetail"}}}},"RoleGrantDetail":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"role":{"$ref":"#/components/schemas/RoleRef"},"privilege":{"type":"string","enum":["ALL","USAGE","MODIFY_ORGANIZATION","MANAGE_USERS","MANAGE_BILLING","MANAGE_GRANTS","CREATE_ROLE","CREATE_WAREHOUSE","LIST_WAREHOUSES","MODIFY_ROLE","MODIFY_WAREHOUSE","LIST_DATABASES","CREATE_DATABASE","FUTURE_MODIFY_DATABASE","FUTURE_LIST_TABLES","FUTURE_CREATE_TABLE","FUTURE_SELECT","FUTURE_UPDATE","FUTURE_DROP_TABLE","MODIFY_DATABASE","LIST_TABLES","CREATE_TABLE","DROP","SELECT","UPDATE","CREATE_LABEL","MODIFY_LABEL","APPLY_LABEL"]},"withGrant":{"type":"boolean"}}},"RoleRef":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"name":{"type":"string"}}},"ListWarehouseResponse":{"type":"object","properties":{"warehouses":{"type":"array","items":{"$ref":"#/components/schemas/Warehouse"}}}},"Warehouse":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"name":{"type":"string"},"region":{"type":"string"},"organizationId":{"type":"string","format":"uuid"},"storageProfile":{"type":"string","format":"uuid"},"properties":{"type":"object","additionalProperties":{"type":"string"}}}},"GetStorageProfileResponse":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"organizationId":{"type":"string","format":"uuid"},"accountId":{"type":"string"},"region":{"type":"string"},"bucket":{"type":"string"},"roleArn":{"type":"string"},"externalId":{"type":"string"},"properties":{"type":"object"}}},"GetRoleResponse":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"name":{"type":"string"},"members":{"type":"array","items":{"$ref":"#/components/schemas/MemberEntry"}},"children":{"type":"array","items":{"$ref":"#/components/schemas/RoleRef"}}}},"MemberEntry":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"email":{"type":"string"},"withAdmin":{"type":"boolean"}}},"ListMembersResponse":{"type":"object","properties":{"members":{"type":"array","items":{"$ref":"#/components/schemas/MemberRef"}}}},"MemberRef":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"email":{"type":"string"}}},"GetCredentialResponse":{"type":"object","properties":{"id":{"type":"string","format":"uuid"},"key":{"type":"string"},"userId":{"type":"string","format":"uuid"},"memberId":{"type":"string","format":"uuid"},"organizationId":{"type":"string","format":"uuid"},"roleId":{"type":"string","format":"uuid"},"name":{"type":"string"},"description":{"type":"string"},"cidrs":{"type":"array","items":{"type":"string"}},"type":{"type":"string","enum":["MEMBER","FEDERATED","IAM","OIDC","SERVICE"]},"creator":{"type":"string"},"active":{"type":"boolean"}}}},"securitySchemes":{"TabularJWTAuth":{"type":"http","scheme":"bearer","bearerFormat":"JWT"}}}}
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "https://api.tabular.io",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/v1/organizations/{organizationId}/warehouses/{warehouseId}/grants": {
+      "put": {
+        "summary": "Grant privileges on a warehouse",
+        "operationId": "grantPrivilegesOnWarehouse",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RoleWarehouseGrantRequest"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Revoke privileges on a warehouse",
+        "operationId": "revokePrivilegesOnWarehouse",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RoleWarehouseGrantRequest"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/{database}/grants": {
+      "get": {
+        "summary": "List all grants for database",
+        "operationId": "getDatabaseRoleGrants",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "database",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListDatabaseRoleGrantsResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      },
+      "put": {
+        "summary": "Grant privileges on database",
+        "operationId": "grantPrivilegesOnDatabase",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "database",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ChangeRoleGrantRequest"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Revoke privileges on database",
+        "operationId": "revokePrivilegesOnDatabase",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "database",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ChangeRoleGrantRequest"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/roles/{roleName}": {
+      "get": {
+        "summary": "Get role",
+        "operationId": "getRole",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "roleName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRoleResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      },
+      "put": {
+        "summary": "Update role",
+        "operationId": "updateRoleName",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "roleName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRoleRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateRoleNameResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete Role",
+        "operationId": "deleteRole",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "roleName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/roles/{roleName}/members": {
+      "put": {
+        "summary": "Add members to a role",
+        "operationId": "addRoleMembers",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "roleName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UpdateRoleMemberRequest"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Remove members from a role",
+        "operationId": "removeRoleMembers",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "roleName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UpdateRoleMemberRequest"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/roles/{roleName}/children": {
+      "put": {
+        "summary": "Add child to role",
+        "operationId": "addChildToRole",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "roleName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRoleRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Remove child from role",
+        "operationId": "removeChildFromRole",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "roleName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRoleRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/": {
+      "post": {
+        "summary": "Creates database with extended information",
+        "operationId": "createDatabase",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDatabaseRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDatabaseResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/warehouses/": {
+      "get": {
+        "summary": "List all warehouses",
+        "operationId": "listWarehouses",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListWarehouseResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create a warehouse",
+        "operationId": "createWarehouse",
+        "parameters": [
+          {
+            "name": "creatorRoleId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateWarehouseRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateWarehouseResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/storage-profiles/": {
+      "post": {
+        "summary": "Create a storage profile",
+        "operationId": "createStorageProfile",
+        "parameters": [
+          {
+            "name": "creatorRoleId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateS3StorageProfileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateS3StorageProfileResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/roles/": {
+      "post": {
+        "summary": "Create role",
+        "operationId": "createRole",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRoleRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateRoleResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/iam/credentials/service-account": {
+      "post": {
+        "summary": "Create a service credential",
+        "operationId": "createServiceAccountCredential",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateServiceAccountCredentialRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateCredentialResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/iam/credentials/oidc": {
+      "post": {
+        "summary": "Create an OIDC Integration",
+        "operationId": "createOIDCIntegration",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOidcCredentialRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateCredentialResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/iam/credentials/member": {
+      "post": {
+        "summary": "Create a member credential",
+        "operationId": "createMemberCredential",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMemberCredentialRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateCredentialResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/iam/credentials/custom-idp": {
+      "post": {
+        "summary": "Create a custom identity provider credential",
+        "operationId": "createCustomerIdentityProviderCredential",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCustomIdpCredentialRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateCredentialResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/iam/credentials/aws": {
+      "post": {
+        "summary": "Create an IAM Role Mapping",
+        "operationId": "createIamRoleMapping",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateIamRoleMappingRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateCredentialResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/warehouses/{warehouseId}": {
+      "get": {
+        "summary": "Get a warehouse by id",
+        "operationId": "getWarehouse",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetWarehouseResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete warehouse by id",
+        "operationId": "deleteWarehouse",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/warehouses/{warehouseId}/grants/roles/{roleId}": {
+      "get": {
+        "summary": "Get warehouse grants by role name",
+        "operationId": "getRoleWarehouseGrants",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRoleWarehouseGrantsResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/{database}": {
+      "get": {
+        "summary": "Gets extended information on a database",
+        "operationId": "getDatabase",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "database",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetDatabaseResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Drops a database",
+        "operationId": "deleteDatabase",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "database",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/storage-profiles/{storageProfileId}": {
+      "get": {
+        "summary": "Get a storage profile by ID",
+        "operationId": "getStorageProfile",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "storageProfileId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetStorageProfileResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete a storage profile by ID",
+        "operationId": "deleteStorageProfile",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "storageProfileId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/members/": {
+      "get": {
+        "summary": "Get organization members",
+        "operationId": "getOrganizationMembers",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListMembersResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/iam/credentials/{credentialKey}": {
+      "get": {
+        "summary": "Fetch information about a credential",
+        "operationId": "getCredential",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "credentialKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCredentialResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete a credential",
+        "operationId": "deleteMemberCredential",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "credentialKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RoleWarehouseGrantRequest": {
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "privilege": {
+            "type": "string",
+            "enum": [
+              "ALL",
+              "USAGE",
+              "MODIFY_ORGANIZATION",
+              "MANAGE_USERS",
+              "MANAGE_BILLING",
+              "MANAGE_GRANTS",
+              "CREATE_ROLE",
+              "CREATE_WAREHOUSE",
+              "LIST_WAREHOUSES",
+              "MODIFY_ROLE",
+              "MODIFY_WAREHOUSE",
+              "LIST_DATABASES",
+              "CREATE_DATABASE",
+              "FUTURE_MODIFY_DATABASE",
+              "FUTURE_LIST_TABLES",
+              "FUTURE_CREATE_TABLE",
+              "FUTURE_SELECT",
+              "FUTURE_UPDATE",
+              "FUTURE_DROP_TABLE",
+              "MODIFY_DATABASE",
+              "LIST_TABLES",
+              "CREATE_TABLE",
+              "DROP",
+              "SELECT",
+              "UPDATE",
+              "CREATE_LABEL",
+              "MODIFY_LABEL",
+              "APPLY_LABEL"
+            ]
+          },
+          "withGrant": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ChangeRoleGrantRequest": {
+        "type": "object",
+        "properties": {
+          "roleName": {
+            "type": "string"
+          },
+          "privilege": {
+            "type": "string",
+            "enum": [
+              "ALL",
+              "USAGE",
+              "MODIFY_ORGANIZATION",
+              "MANAGE_USERS",
+              "MANAGE_BILLING",
+              "MANAGE_GRANTS",
+              "CREATE_ROLE",
+              "CREATE_WAREHOUSE",
+              "LIST_WAREHOUSES",
+              "MODIFY_ROLE",
+              "MODIFY_WAREHOUSE",
+              "LIST_DATABASES",
+              "CREATE_DATABASE",
+              "FUTURE_MODIFY_DATABASE",
+              "FUTURE_LIST_TABLES",
+              "FUTURE_CREATE_TABLE",
+              "FUTURE_SELECT",
+              "FUTURE_UPDATE",
+              "FUTURE_DROP_TABLE",
+              "MODIFY_DATABASE",
+              "LIST_TABLES",
+              "CREATE_TABLE",
+              "DROP",
+              "SELECT",
+              "UPDATE",
+              "CREATE_LABEL",
+              "MODIFY_LABEL",
+              "APPLY_LABEL"
+            ]
+          },
+          "withGrant": {
+            "type": "boolean"
+          }
+        }
+      },
+      "UpdateRoleRequest": {
+        "type": "object",
+        "properties": {
+          "roleName": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateRoleNameResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateRoleMemberRequest": {
+        "type": "object",
+        "properties": {
+          "memberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "withAdmin": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CreateDatabaseRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CreateDatabaseResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CreateWarehouseRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "storageProfileId": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateWarehouseResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "organizationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "storageProfile": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "properties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CreateS3StorageProfileRequest": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string"
+          },
+          "bucket": {
+            "type": "string"
+          },
+          "roleArn": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateS3StorageProfileResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "organizationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "accountId": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "bucket": {
+            "type": "string"
+          },
+          "roleArn": {
+            "type": "string"
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "object"
+          }
+        }
+      },
+      "CreateRoleRequest": {
+        "type": "object",
+        "properties": {
+          "roleName": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateRoleResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateServiceAccountCredentialRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "roleId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "CreateCredentialResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "credentialId": {
+            "type": "string"
+          },
+          "credentialSecret": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateOidcCredentialRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "oidcIssuer": {
+            "type": "string"
+          },
+          "oidcClaimKey": {
+            "type": "string"
+          },
+          "oidcClaimValue": {
+            "type": "string"
+          },
+          "roleId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "CreateMemberCredentialRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateCustomIdpCredentialRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateIamRoleMappingRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "awsRoleArn": {
+            "type": "string"
+          },
+          "roleId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "GetWarehouseResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "organizationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "storageProfile": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "properties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "GetRoleWarehouseGrantsResponse": {
+        "type": "object",
+        "properties": {
+          "authorizations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WarehouseAuthorization"
+            }
+          }
+        }
+      },
+      "WarehouseAuthorization": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "subjectId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "privilege": {
+            "type": "string",
+            "enum": [
+              "ALL",
+              "USAGE",
+              "MODIFY_ORGANIZATION",
+              "MANAGE_USERS",
+              "MANAGE_BILLING",
+              "MANAGE_GRANTS",
+              "CREATE_ROLE",
+              "CREATE_WAREHOUSE",
+              "LIST_WAREHOUSES",
+              "MODIFY_ROLE",
+              "MODIFY_WAREHOUSE",
+              "LIST_DATABASES",
+              "CREATE_DATABASE",
+              "FUTURE_MODIFY_DATABASE",
+              "FUTURE_LIST_TABLES",
+              "FUTURE_CREATE_TABLE",
+              "FUTURE_SELECT",
+              "FUTURE_UPDATE",
+              "FUTURE_DROP_TABLE",
+              "MODIFY_DATABASE",
+              "LIST_TABLES",
+              "CREATE_TABLE",
+              "DROP",
+              "SELECT",
+              "UPDATE",
+              "CREATE_LABEL",
+              "MODIFY_LABEL",
+              "APPLY_LABEL"
+            ]
+          },
+          "withGrant": {
+            "type": "boolean"
+          },
+          "resource": {
+            "type": "string"
+          },
+          "resourceType": {
+            "type": "string"
+          }
+        }
+      },
+      "GetDatabaseResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "warehouseId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastModifiedBy": {
+            "type": "string"
+          },
+          "lastModified": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "properties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ListDatabaseRoleGrantsResponse": {
+        "type": "object",
+        "properties": {
+          "grants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleGrantDetail"
+            }
+          }
+        }
+      },
+      "RoleGrantDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "role": {
+            "$ref": "#/components/schemas/RoleRef"
+          },
+          "privilege": {
+            "type": "string",
+            "enum": [
+              "ALL",
+              "USAGE",
+              "MODIFY_ORGANIZATION",
+              "MANAGE_USERS",
+              "MANAGE_BILLING",
+              "MANAGE_GRANTS",
+              "CREATE_ROLE",
+              "CREATE_WAREHOUSE",
+              "LIST_WAREHOUSES",
+              "MODIFY_ROLE",
+              "MODIFY_WAREHOUSE",
+              "LIST_DATABASES",
+              "CREATE_DATABASE",
+              "FUTURE_MODIFY_DATABASE",
+              "FUTURE_LIST_TABLES",
+              "FUTURE_CREATE_TABLE",
+              "FUTURE_SELECT",
+              "FUTURE_UPDATE",
+              "FUTURE_DROP_TABLE",
+              "MODIFY_DATABASE",
+              "LIST_TABLES",
+              "CREATE_TABLE",
+              "DROP",
+              "SELECT",
+              "UPDATE",
+              "CREATE_LABEL",
+              "MODIFY_LABEL",
+              "APPLY_LABEL"
+            ]
+          },
+          "withGrant": {
+            "type": "boolean"
+          }
+        }
+      },
+      "RoleRef": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "ListWarehouseResponse": {
+        "type": "object",
+        "properties": {
+          "warehouses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Warehouse"
+            }
+          }
+        }
+      },
+      "Warehouse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "organizationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "storageProfile": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "properties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "GetStorageProfileResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "organizationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "accountId": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "bucket": {
+            "type": "string"
+          },
+          "roleArn": {
+            "type": "string"
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "object"
+          }
+        }
+      },
+      "GetRoleResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemberEntry"
+            }
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleRef"
+            }
+          }
+        }
+      },
+      "MemberEntry": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "email": {
+            "type": "string"
+          },
+          "withAdmin": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ListMembersResponse": {
+        "type": "object",
+        "properties": {
+          "members": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemberRef"
+            }
+          }
+        }
+      },
+      "MemberRef": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "GetCredentialResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "key": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "memberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "organizationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "roleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "cidrs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "MEMBER",
+              "FEDERATED",
+              "IAM",
+              "OIDC",
+              "SERVICE"
+            ]
+          },
+          "creator": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "TabularJWTAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
