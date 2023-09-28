@@ -1,6 +1,6 @@
 # \DefaultApi
 
-All URIs are relative to *https://api.tabular.io*
+All URIs are relative to *http://localhost:9110*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -25,13 +25,16 @@ Method | HTTP request | Description
 [**GetDatabaseRoleGrants**](DefaultApi.md#GetDatabaseRoleGrants) | **Get** /v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/{database}/grants | List all grants for database
 [**GetOrganizationMembers**](DefaultApi.md#GetOrganizationMembers) | **Get** /v1/organizations/{organizationId}/members/ | Get organization members
 [**GetRole**](DefaultApi.md#GetRole) | **Get** /v1/organizations/{organizationId}/roles/{roleName} | Get role
+[**GetRoleWarehouseGrants**](DefaultApi.md#GetRoleWarehouseGrants) | **Get** /v1/organizations/{organizationId}/warehouses/{warehouseId}/grants/roles/{roleId} | Get warehouse grants by role name
 [**GetStorageProfile**](DefaultApi.md#GetStorageProfile) | **Get** /v1/organizations/{organizationId}/storage-profiles/{storageProfileId} | Get a storage profile by ID
 [**GetWarehouse**](DefaultApi.md#GetWarehouse) | **Get** /v1/organizations/{organizationId}/warehouses/{warehouseId} | Get a warehouse by id
 [**GrantPrivilegesOnDatabase**](DefaultApi.md#GrantPrivilegesOnDatabase) | **Put** /v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/{database}/grants | Grant privileges on database
+[**GrantPrivilegesOnWarehouse**](DefaultApi.md#GrantPrivilegesOnWarehouse) | **Put** /v1/organizations/{organizationId}/warehouses/{warehouseId}/grants | Grant privileges on a warehouse
 [**ListWarehouses**](DefaultApi.md#ListWarehouses) | **Get** /v1/organizations/{organizationId}/warehouses/ | List all warehouses
 [**RemoveChildFromRole**](DefaultApi.md#RemoveChildFromRole) | **Delete** /v1/organizations/{organizationId}/roles/{roleName}/children | Remove child from role
 [**RemoveRoleMembers**](DefaultApi.md#RemoveRoleMembers) | **Delete** /v1/organizations/{organizationId}/roles/{roleName}/members | Remove members from a role
 [**RevokePrivilegesOnDatabase**](DefaultApi.md#RevokePrivilegesOnDatabase) | **Delete** /v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/{database}/grants | Revoke privileges on database
+[**RevokePrivilegesOnWarehouse**](DefaultApi.md#RevokePrivilegesOnWarehouse) | **Delete** /v1/organizations/{organizationId}/warehouses/{warehouseId}/grants | Revoke privileges on a warehouse
 [**UpdateRoleName**](DefaultApi.md#UpdateRoleName) | **Put** /v1/organizations/{organizationId}/roles/{roleName} | Update role
 
 
@@ -51,7 +54,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -122,7 +125,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -193,7 +196,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -263,7 +266,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -336,7 +339,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -406,7 +409,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -476,7 +479,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -546,7 +549,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -616,7 +619,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -686,7 +689,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -758,7 +761,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -830,7 +833,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -902,7 +905,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -971,7 +974,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -1042,7 +1045,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -1111,7 +1114,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -1180,7 +1183,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -1251,7 +1254,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -1325,7 +1328,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -1399,7 +1402,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -1467,7 +1470,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -1523,6 +1526,80 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetRoleWarehouseGrants
+
+> GetRoleWarehouseGrantsResponse GetRoleWarehouseGrants(ctx, organizationId, warehouseId, roleId).Execute()
+
+Get warehouse grants by role name
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
+)
+
+func main() {
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    warehouseId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    roleId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetRoleWarehouseGrants(context.Background(), organizationId, warehouseId, roleId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetRoleWarehouseGrants``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetRoleWarehouseGrants`: GetRoleWarehouseGrantsResponse
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.GetRoleWarehouseGrants`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** |  | 
+**warehouseId** | **string** |  | 
+**roleId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetRoleWarehouseGrantsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+### Return type
+
+[**GetRoleWarehouseGrantsResponse**](GetRoleWarehouseGrantsResponse.md)
+
+### Authorization
+
+[TabularJWTAuth](../README.md#TabularJWTAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetStorageProfile
 
 > GetStorageProfileResponse GetStorageProfile(ctx, organizationId, storageProfileId).Execute()
@@ -1538,7 +1615,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -1609,7 +1686,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -1680,7 +1757,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -1739,6 +1816,77 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GrantPrivilegesOnWarehouse
+
+> GrantPrivilegesOnWarehouse(ctx, organizationId, warehouseId).RoleWarehouseGrantRequest(roleWarehouseGrantRequest).Execute()
+
+Grant privileges on a warehouse
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
+)
+
+func main() {
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    warehouseId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    roleWarehouseGrantRequest := []openapiclient.RoleWarehouseGrantRequest{*openapiclient.NewRoleWarehouseGrantRequest()} // []RoleWarehouseGrantRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.GrantPrivilegesOnWarehouse(context.Background(), organizationId, warehouseId).RoleWarehouseGrantRequest(roleWarehouseGrantRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GrantPrivilegesOnWarehouse``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** |  | 
+**warehouseId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGrantPrivilegesOnWarehouseRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **roleWarehouseGrantRequest** | [**[]RoleWarehouseGrantRequest**](RoleWarehouseGrantRequest.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[TabularJWTAuth](../README.md#TabularJWTAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ListWarehouses
 
 > ListWarehouseResponse ListWarehouses(ctx, organizationId).Execute()
@@ -1754,7 +1902,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -1822,7 +1970,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -1893,7 +2041,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -1964,7 +2112,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {
@@ -2023,6 +2171,77 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## RevokePrivilegesOnWarehouse
+
+> RevokePrivilegesOnWarehouse(ctx, organizationId, warehouseId).RoleWarehouseGrantRequest(roleWarehouseGrantRequest).Execute()
+
+Revoke privileges on a warehouse
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
+)
+
+func main() {
+    organizationId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    warehouseId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    roleWarehouseGrantRequest := []openapiclient.RoleWarehouseGrantRequest{*openapiclient.NewRoleWarehouseGrantRequest()} // []RoleWarehouseGrantRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DefaultApi.RevokePrivilegesOnWarehouse(context.Background(), organizationId, warehouseId).RoleWarehouseGrantRequest(roleWarehouseGrantRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.RevokePrivilegesOnWarehouse``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** |  | 
+**warehouseId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRevokePrivilegesOnWarehouseRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **roleWarehouseGrantRequest** | [**[]RoleWarehouseGrantRequest**](RoleWarehouseGrantRequest.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[TabularJWTAuth](../README.md#TabularJWTAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateRoleName
 
 > UpdateRoleNameResponse UpdateRoleName(ctx, organizationId, roleName).UpdateRoleRequest(updateRoleRequest).Execute()
@@ -2038,7 +2257,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/tabular-io/tabular-sdk-go"
+    openapiclient "github.com/tabular-io/tabular-sdk-go/tabular"
 )
 
 func main() {

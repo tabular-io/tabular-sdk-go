@@ -3,9 +3,76 @@ info:
   title: OpenAPI definition
   version: v0
 servers:
-- description: Tabular API
-  url: https://api.tabular.io
+- description: Generated server url
+  url: http://localhost:9110
 paths:
+  /v1/organizations/{organizationId}/warehouses/{warehouseId}/grants:
+    delete:
+      operationId: revokePrivilegesOnWarehouse
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: warehouseId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/RoleWarehouseGrantRequest'
+              type: array
+        required: true
+      responses:
+        "200":
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Revoke privileges on a warehouse
+    put:
+      operationId: grantPrivilegesOnWarehouse
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: warehouseId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/RoleWarehouseGrantRequest'
+              type: array
+        required: true
+      responses:
+        "200":
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Grant privileges on a warehouse
   /v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/{database}/grants:
     delete:
       operationId: revokePrivilegesOnDatabase
@@ -695,6 +762,44 @@ paths:
       security:
       - TabularJWTAuth: []
       summary: Get a warehouse by id
+  /v1/organizations/{organizationId}/warehouses/{warehouseId}/grants/roles/{roleId}:
+    get:
+      operationId: getRoleWarehouseGrants
+      parameters:
+      - explode: false
+        in: path
+        name: organizationId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: warehouseId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: roleId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetRoleWarehouseGrantsResponse'
+          description: OK
+      security:
+      - TabularJWTAuth: []
+      summary: Get warehouse grants by role name
   /v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/{database}:
     delete:
       operationId: deleteDatabase
@@ -896,6 +1001,49 @@ paths:
       summary: Fetch information about a credential
 components:
   schemas:
+    RoleWarehouseGrantRequest:
+      example:
+        withGrant: true
+        roleId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        privilege: ALL
+      properties:
+        roleId:
+          format: uuid
+          type: string
+        privilege:
+          enum:
+          - ALL
+          - USAGE
+          - MODIFY_ORGANIZATION
+          - MANAGE_USERS
+          - MANAGE_BILLING
+          - MANAGE_GRANTS
+          - CREATE_ROLE
+          - CREATE_WAREHOUSE
+          - LIST_WAREHOUSES
+          - MODIFY_ROLE
+          - MODIFY_WAREHOUSE
+          - LIST_DATABASES
+          - CREATE_DATABASE
+          - FUTURE_MODIFY_DATABASE
+          - FUTURE_LIST_TABLES
+          - FUTURE_CREATE_TABLE
+          - FUTURE_SELECT
+          - FUTURE_UPDATE
+          - FUTURE_DROP_TABLE
+          - MODIFY_DATABASE
+          - LIST_TABLES
+          - CREATE_TABLE
+          - DROP
+          - SELECT
+          - UPDATE
+          - CREATE_LABEL
+          - MODIFY_LABEL
+          - APPLY_LABEL
+          type: string
+        withGrant:
+          type: boolean
+      type: object
     ChangeRoleGrantRequest:
       example:
         withGrant: true
@@ -931,6 +1079,9 @@ components:
           - DROP
           - SELECT
           - UPDATE
+          - CREATE_LABEL
+          - MODIFY_LABEL
+          - APPLY_LABEL
           type: string
         withGrant:
           type: boolean
@@ -1189,6 +1340,80 @@ components:
             type: string
           type: object
       type: object
+    GetRoleWarehouseGrantsResponse:
+      example:
+        authorizations:
+        - withGrant: true
+          resource: resource
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          privilege: ALL
+          subjectId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          resourceType: resourceType
+        - withGrant: true
+          resource: resource
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          privilege: ALL
+          subjectId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          resourceType: resourceType
+      properties:
+        authorizations:
+          items:
+            $ref: '#/components/schemas/WarehouseAuthorization'
+          type: array
+      type: object
+    WarehouseAuthorization:
+      example:
+        withGrant: true
+        resource: resource
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        privilege: ALL
+        subjectId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        resourceType: resourceType
+      properties:
+        id:
+          format: uuid
+          type: string
+        subjectId:
+          format: uuid
+          type: string
+        privilege:
+          enum:
+          - ALL
+          - USAGE
+          - MODIFY_ORGANIZATION
+          - MANAGE_USERS
+          - MANAGE_BILLING
+          - MANAGE_GRANTS
+          - CREATE_ROLE
+          - CREATE_WAREHOUSE
+          - LIST_WAREHOUSES
+          - MODIFY_ROLE
+          - MODIFY_WAREHOUSE
+          - LIST_DATABASES
+          - CREATE_DATABASE
+          - FUTURE_MODIFY_DATABASE
+          - FUTURE_LIST_TABLES
+          - FUTURE_CREATE_TABLE
+          - FUTURE_SELECT
+          - FUTURE_UPDATE
+          - FUTURE_DROP_TABLE
+          - MODIFY_DATABASE
+          - LIST_TABLES
+          - CREATE_TABLE
+          - DROP
+          - SELECT
+          - UPDATE
+          - CREATE_LABEL
+          - MODIFY_LABEL
+          - APPLY_LABEL
+          type: string
+        withGrant:
+          type: boolean
+        resource:
+          type: string
+        resourceType:
+          type: string
+      type: object
     GetDatabaseResponse:
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
@@ -1286,6 +1511,9 @@ components:
           - DROP
           - SELECT
           - UPDATE
+          - CREATE_LABEL
+          - MODIFY_LABEL
+          - APPLY_LABEL
           type: string
         withGrant:
           type: boolean

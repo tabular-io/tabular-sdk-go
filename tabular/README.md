@@ -21,7 +21,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import tabular "github.com/tabular-io/tabular-sdk-go"
+import tabular "github.com/tabular-io/tabular-sdk-go/tabular"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -73,7 +73,7 @@ ctx = context.WithValue(context.Background(), tabular.ContextOperationServerVari
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.tabular.io*
+All URIs are relative to *http://localhost:9110*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -98,13 +98,16 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**GetDatabaseRoleGrants**](docs/DefaultApi.md#getdatabaserolegrants) | **Get** /v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/{database}/grants | List all grants for database
 *DefaultApi* | [**GetOrganizationMembers**](docs/DefaultApi.md#getorganizationmembers) | **Get** /v1/organizations/{organizationId}/members/ | Get organization members
 *DefaultApi* | [**GetRole**](docs/DefaultApi.md#getrole) | **Get** /v1/organizations/{organizationId}/roles/{roleName} | Get role
+*DefaultApi* | [**GetRoleWarehouseGrants**](docs/DefaultApi.md#getrolewarehousegrants) | **Get** /v1/organizations/{organizationId}/warehouses/{warehouseId}/grants/roles/{roleId} | Get warehouse grants by role name
 *DefaultApi* | [**GetStorageProfile**](docs/DefaultApi.md#getstorageprofile) | **Get** /v1/organizations/{organizationId}/storage-profiles/{storageProfileId} | Get a storage profile by ID
 *DefaultApi* | [**GetWarehouse**](docs/DefaultApi.md#getwarehouse) | **Get** /v1/organizations/{organizationId}/warehouses/{warehouseId} | Get a warehouse by id
 *DefaultApi* | [**GrantPrivilegesOnDatabase**](docs/DefaultApi.md#grantprivilegesondatabase) | **Put** /v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/{database}/grants | Grant privileges on database
+*DefaultApi* | [**GrantPrivilegesOnWarehouse**](docs/DefaultApi.md#grantprivilegesonwarehouse) | **Put** /v1/organizations/{organizationId}/warehouses/{warehouseId}/grants | Grant privileges on a warehouse
 *DefaultApi* | [**ListWarehouses**](docs/DefaultApi.md#listwarehouses) | **Get** /v1/organizations/{organizationId}/warehouses/ | List all warehouses
 *DefaultApi* | [**RemoveChildFromRole**](docs/DefaultApi.md#removechildfromrole) | **Delete** /v1/organizations/{organizationId}/roles/{roleName}/children | Remove child from role
 *DefaultApi* | [**RemoveRoleMembers**](docs/DefaultApi.md#removerolemembers) | **Delete** /v1/organizations/{organizationId}/roles/{roleName}/members | Remove members from a role
 *DefaultApi* | [**RevokePrivilegesOnDatabase**](docs/DefaultApi.md#revokeprivilegesondatabase) | **Delete** /v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/{database}/grants | Revoke privileges on database
+*DefaultApi* | [**RevokePrivilegesOnWarehouse**](docs/DefaultApi.md#revokeprivilegesonwarehouse) | **Delete** /v1/organizations/{organizationId}/warehouses/{warehouseId}/grants | Revoke privileges on a warehouse
 *DefaultApi* | [**UpdateRoleName**](docs/DefaultApi.md#updaterolename) | **Put** /v1/organizations/{organizationId}/roles/{roleName} | Update role
 
 
@@ -128,6 +131,7 @@ Class | Method | HTTP request | Description
  - [GetCredentialResponse](docs/GetCredentialResponse.md)
  - [GetDatabaseResponse](docs/GetDatabaseResponse.md)
  - [GetRoleResponse](docs/GetRoleResponse.md)
+ - [GetRoleWarehouseGrantsResponse](docs/GetRoleWarehouseGrantsResponse.md)
  - [GetStorageProfileResponse](docs/GetStorageProfileResponse.md)
  - [GetWarehouseResponse](docs/GetWarehouseResponse.md)
  - [ListDatabaseRoleGrantsResponse](docs/ListDatabaseRoleGrantsResponse.md)
@@ -137,10 +141,12 @@ Class | Method | HTTP request | Description
  - [MemberRef](docs/MemberRef.md)
  - [RoleGrantDetail](docs/RoleGrantDetail.md)
  - [RoleRef](docs/RoleRef.md)
+ - [RoleWarehouseGrantRequest](docs/RoleWarehouseGrantRequest.md)
  - [UpdateRoleMemberRequest](docs/UpdateRoleMemberRequest.md)
  - [UpdateRoleNameResponse](docs/UpdateRoleNameResponse.md)
  - [UpdateRoleRequest](docs/UpdateRoleRequest.md)
  - [Warehouse](docs/Warehouse.md)
+ - [WarehouseAuthorization](docs/WarehouseAuthorization.md)
 
 
 ## Documentation For Authorization

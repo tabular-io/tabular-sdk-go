@@ -93,8 +93,8 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "https://api.tabular.io",
-				Description: "Tabular API",
+				URL: "http://localhost:9110",
+				Description: "Generated server url",
 			},
 		},
 		OperationServers: map[string]ServerConfigurations{

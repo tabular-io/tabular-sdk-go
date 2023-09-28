@@ -24,6 +24,7 @@ docs/DefaultApi.md
 docs/GetCredentialResponse.md
 docs/GetDatabaseResponse.md
 docs/GetRoleResponse.md
+docs/GetRoleWarehouseGrantsResponse.md
 docs/GetStorageProfileResponse.md
 docs/GetWarehouseResponse.md
 docs/ListDatabaseRoleGrantsResponse.md
@@ -33,10 +34,12 @@ docs/MemberEntry.md
 docs/MemberRef.md
 docs/RoleGrantDetail.md
 docs/RoleRef.md
+docs/RoleWarehouseGrantRequest.md
 docs/UpdateRoleMemberRequest.md
 docs/UpdateRoleNameResponse.md
 docs/UpdateRoleRequest.md
 docs/Warehouse.md
+docs/WarehouseAuthorization.md
 git_push.sh
 go.mod
 go.sum
@@ -58,6 +61,7 @@ model_create_warehouse_response.go
 model_get_credential_response.go
 model_get_database_response.go
 model_get_role_response.go
+model_get_role_warehouse_grants_response.go
 model_get_storage_profile_response.go
 model_get_warehouse_response.go
 model_list_database_role_grants_response.go
@@ -67,10 +71,11 @@ model_member_entry.go
 model_member_ref.go
 model_role_grant_detail.go
 model_role_ref.go
+model_role_warehouse_grant_request.go
 model_update_role_member_request.go
 model_update_role_name_response.go
 model_update_role_request.go
 model_warehouse.go
+model_warehouse_authorization.go
 response.go
-test/api_default_test.go
 utils.go
