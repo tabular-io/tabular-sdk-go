@@ -7,10 +7,106 @@
   "servers": [
     {
       "url": "https://api.tabular.io",
-      "description": "Tabular API"
+      "description": "Generated server url"
     }
   ],
   "paths": {
+    "/v1/organizations/{organizationId}/warehouses/{warehouseId}/grants": {
+      "put": {
+        "summary": "Grant privileges on a warehouse",
+        "operationId": "grantPrivilegesOnWarehouse",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RoleWarehouseGrantRequest"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Revoke privileges on a warehouse",
+        "operationId": "revokePrivilegesOnWarehouse",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RoleWarehouseGrantRequest"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
     "/v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/{database}/grants": {
       "get": {
         "summary": "List all grants for database",
@@ -1019,6 +1115,58 @@
         ]
       }
     },
+    "/v1/organizations/{organizationId}/warehouses/{warehouseId}/grants/roles/{roleId}": {
+      "get": {
+        "summary": "Get warehouse grants by role name",
+        "operationId": "getRoleWarehouseGrants",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "warehouseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRoleWarehouseGrantsResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "TabularJWTAuth": []
+          }
+        ]
+      }
+    },
     "/v1/organizations/{organizationId}/warehouses/{warehouseId}/databases/{database}": {
       "get": {
         "summary": "Gets extended information on a database",
@@ -1301,6 +1449,51 @@
   },
   "components": {
     "schemas": {
+      "RoleWarehouseGrantRequest": {
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "privilege": {
+            "type": "string",
+            "enum": [
+              "ALL",
+              "USAGE",
+              "MODIFY_ORGANIZATION",
+              "MANAGE_USERS",
+              "MANAGE_BILLING",
+              "MANAGE_GRANTS",
+              "CREATE_ROLE",
+              "CREATE_WAREHOUSE",
+              "LIST_WAREHOUSES",
+              "MODIFY_ROLE",
+              "MODIFY_WAREHOUSE",
+              "LIST_DATABASES",
+              "CREATE_DATABASE",
+              "FUTURE_MODIFY_DATABASE",
+              "FUTURE_LIST_TABLES",
+              "FUTURE_CREATE_TABLE",
+              "FUTURE_SELECT",
+              "FUTURE_UPDATE",
+              "FUTURE_DROP_TABLE",
+              "MODIFY_DATABASE",
+              "LIST_TABLES",
+              "CREATE_TABLE",
+              "DROP",
+              "SELECT",
+              "UPDATE",
+              "CREATE_LABEL",
+              "MODIFY_LABEL",
+              "APPLY_LABEL"
+            ]
+          },
+          "withGrant": {
+            "type": "boolean"
+          }
+        }
+      },
       "ChangeRoleGrantRequest": {
         "type": "object",
         "properties": {
@@ -1334,7 +1527,10 @@
               "CREATE_TABLE",
               "DROP",
               "SELECT",
-              "UPDATE"
+              "UPDATE",
+              "CREATE_LABEL",
+              "MODIFY_LABEL",
+              "APPLY_LABEL"
             ]
           },
           "withGrant": {
@@ -1614,6 +1810,72 @@
           }
         }
       },
+      "GetRoleWarehouseGrantsResponse": {
+        "type": "object",
+        "properties": {
+          "authorizations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WarehouseAuthorization"
+            }
+          }
+        }
+      },
+      "WarehouseAuthorization": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "subjectId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "privilege": {
+            "type": "string",
+            "enum": [
+              "ALL",
+              "USAGE",
+              "MODIFY_ORGANIZATION",
+              "MANAGE_USERS",
+              "MANAGE_BILLING",
+              "MANAGE_GRANTS",
+              "CREATE_ROLE",
+              "CREATE_WAREHOUSE",
+              "LIST_WAREHOUSES",
+              "MODIFY_ROLE",
+              "MODIFY_WAREHOUSE",
+              "LIST_DATABASES",
+              "CREATE_DATABASE",
+              "FUTURE_MODIFY_DATABASE",
+              "FUTURE_LIST_TABLES",
+              "FUTURE_CREATE_TABLE",
+              "FUTURE_SELECT",
+              "FUTURE_UPDATE",
+              "FUTURE_DROP_TABLE",
+              "MODIFY_DATABASE",
+              "LIST_TABLES",
+              "CREATE_TABLE",
+              "DROP",
+              "SELECT",
+              "UPDATE",
+              "CREATE_LABEL",
+              "MODIFY_LABEL",
+              "APPLY_LABEL"
+            ]
+          },
+          "withGrant": {
+            "type": "boolean"
+          },
+          "resource": {
+            "type": "string"
+          },
+          "resourceType": {
+            "type": "string"
+          }
+        }
+      },
       "GetDatabaseResponse": {
         "type": "object",
         "properties": {
@@ -1698,7 +1960,10 @@
               "CREATE_TABLE",
               "DROP",
               "SELECT",
-              "UPDATE"
+              "UPDATE",
+              "CREATE_LABEL",
+              "MODIFY_LABEL",
+              "APPLY_LABEL"
             ]
           },
           "withGrant": {
